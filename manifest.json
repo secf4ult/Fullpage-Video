@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Full-page Video",
+  "version": "1.0",
+  "description": "Turn videos on webpages into full-page mode",
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["https://www.youtube.com/*"],
+      "js": ["contentScript.js"]
+    }
+  ],
+  "action": {
+    "default_icon": "assets/icon.png"
+  }
+}
