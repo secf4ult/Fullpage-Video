@@ -1,12 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Full-page Video",
+  "name": "Full Viewport Video",
   "version": "1.0",
-  "description": "Turn videos on webpages into full-page mode",
+  "description": "Turn videos on webpages into full viewport mode",
   "permissions": ["activeTab"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],
+      "run_at": "document_end",
       "js": ["contentScript.js"]
     }
   ],
