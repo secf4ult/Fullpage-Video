@@ -1,5 +1,9 @@
 (() => {
   const FBV_CANVAS_ID = "fbv-full-viewport-container";
+  const USER_SETTINGS = {
+    shortcut_key: "g",
+    auto_theater: true,
+  };
 
   const ytbRightControlEle = document.querySelector(".ytp-right-controls");
   const ytpChromeBottomEle = document.querySelector(".ytp-chrome-bottom");
@@ -17,10 +21,15 @@
       "button.ytp-fullscreen-button"
     );
 
-    ytbRightControlEle.insertBefore(
-      fullViewportModeEle,
-      ytbFullScreenButtonEle
-    );
+    ytbRightControlEle &&
+      ytbRightControlEle.insertBefore(
+        fullViewportModeEle,
+        ytbFullScreenButtonEle
+      );
+  }
+
+  if (USER_SETTINGS.auto_theater) {
+    makeVideoFullViewport();
   }
 
   function createFullViewportButton() {
@@ -37,6 +46,8 @@
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         restoreVideo();
+      } else if (e.key == USER_SETTINGS.shortcut_key) {
+        onClickFullViewportBtn();
       }
     });
 
