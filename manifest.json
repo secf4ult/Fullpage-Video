@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Full Viewport Video",
-  "version": "1.0",
-  "description": "Turn videos on webpages into full viewport mode",
+  "name": "True Youtube Theater",
+  "version": "0.1",
+  "description": "A chrome extension to turn youtube videos into true theater",
   "permissions": ["activeTab"],
   "content_scripts": [
     {
@@ -12,6 +12,7 @@
     }
   ],
   "action": {
+    "default_title": "True Youtube Theater",
     "default_icon": "assets/icon.png"
   }
 }

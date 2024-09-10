@@ -1,3 +1,3 @@
-# Fullpage Video
+# True Youtube Theater
 
-A chrome extension to play youtube videos in full-page mode.
+A chrome extension to turn youtube videos into true theater.
