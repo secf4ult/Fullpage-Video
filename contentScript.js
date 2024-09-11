@@ -38,9 +38,13 @@
     button.classList.add("ytp-button", "ytp-full-viewport-button");
     button.title = "Full Viewport";
 
-    // const buttonImg = document.createElement("img");
-    // buttonImg.src = "assets/icon.png";
-    // fullViewportModeEle.appendChild(buttonImg);
+    const buttonImg = document.createElement("img");
+    buttonImg.src = chrome.runtime.getURL("assets/icon_sans_bg.svg");
+    buttonImg.style.height = "100%";
+    buttonImg.style.width = "100%";
+    buttonImg.style.boxSizing = "border-box";
+    buttonImg.style.padding = "12px";
+    button.appendChild(buttonImg);
 
     button.addEventListener("click", onClickFullViewportBtn);
     window.addEventListener("keydown", (e) => {
@@ -64,6 +68,10 @@
 
   function makeVideoFullViewport() {
     const player = getVideoPlayer();
+    if (!player) {
+      return;
+    }
+
     containerParentEle = player.parentElement;
     videoEle = player.querySelector("video");
     originalVideoCss = videoEle.style.cssText;
