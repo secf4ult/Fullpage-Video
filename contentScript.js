@@ -1,7 +1,7 @@
 (() => {
   const FBV_CANVAS_ID = "fbv-full-viewport-container";
   const USER_SETTINGS = {
-    shortcut_key: "g",
+    shortcut_key: "q",
     auto_theater: true,
   };
 
@@ -38,7 +38,7 @@
     const button = document.createElement("button");
     button.id = "ytp-full-viewport-button";
     button.classList.add("ytp-button", "ytp-full-viewport-button");
-    button.title = "Full Viewport";
+    button.title = `Full Viewport (${USER_SETTINGS.shortcut_key})`;
 
     const buttonImg = document.createElement("img");
     buttonImg.src = chrome.runtime.getURL("assets/icon_sans_bg.svg");
@@ -50,10 +50,10 @@
 
     button.addEventListener("click", onClickFullViewportBtn);
     window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        restoreVideo();
-      } else if (e.key == USER_SETTINGS.shortcut_key) {
+      if (e.key == USER_SETTINGS.shortcut_key) {
         onClickFullViewportBtn();
+      } else if (e.key === "Escape") {
+        restoreVideo();
       }
     });
 
