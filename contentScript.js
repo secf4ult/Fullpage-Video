@@ -29,7 +29,9 @@
   }
 
   if (USER_SETTINGS.auto_theater) {
-    makeVideoFullViewport();
+    setTimeout(() => {
+      makeVideoFullViewport();
+    }, 500);
   }
 
   function createFullViewportButton() {
