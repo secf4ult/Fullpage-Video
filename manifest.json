@@ -3,7 +3,7 @@
   "name": "True Youtube Theater",
   "version": "0.1",
   "description": "A chrome extension to turn youtube videos into true theater",
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "storage"],
   "content_scripts": [
     {
       "matches": ["https://www.youtube.com/*"],

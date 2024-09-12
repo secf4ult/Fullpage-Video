@@ -1,0 +1,18 @@
+.container {
+  width: 150px;
+}
+
+.user-settings-title {
+  margin: 8px;
+}
+
+.user-settings-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 8px;
+}
+
+.user-settings-list-item {
+  display: flex;
+  align-items: center;
+}
