@@ -9,13 +9,25 @@
   let containerParentEle = null;
   let originalVideoCss = null;
   let videoEle = null;
-  let fullViewportModeEle = document.querySelector('#ytp-full-viewport-button');
 
-  init();
+  chrome.runtime.onMessage.addListener((obj, sender, response) => {
+    const { type } = obj;
+
+    if (type === 'WATCH') {
+      init();
+    }
+  });
 
   async function init() {
     await waitForPlayerLoaded();
     makeVideoTheater();
+
+    const { isAutoTheater } = await chrome.storage.local.get(['isAutoTheater']);
+    USER_SETTINGS.autoTheater = isAutoTheater;
+
+    if (USER_SETTINGS.autoTheater) {
+      makeVideoFullViewport();
+    }
   }
 
   async function waitForPlayerLoaded() {
@@ -35,11 +47,19 @@
       });
 
       observer.observe(document.body, { childList: true, subtree: true });
+
+      setTimeout(() => {
+        observer.disconnect();
+        resolve();
+      }, 500);
     });
   }
 
   function makeVideoTheater() {
     const ytbRightControlEle = document.querySelector('.ytp-right-controls');
+    let fullViewportModeEle = document.querySelector(
+      '#ytp-full-viewport-button'
+    );
 
     if (!fullViewportModeEle) {
       fullViewportModeEle = createFullViewportButton();
@@ -53,14 +73,6 @@
           ytbFullScreenButtonEle
         );
     }
-
-    chrome.storage.local.get(['autoTheater'], ({ autoTheater }) => {
-      USER_SETTINGS.autoTheater = autoTheater;
-
-      if (USER_SETTINGS.autoTheater) {
-        makeVideoFullViewport();
-      }
-    });
   }
 
   function createFullViewportButton() {
