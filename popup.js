@@ -1,11 +1,11 @@
-const autoTheaterOpEle = document.querySelector("#auto_theater_option");
+const autoTheaterOpEle = document.querySelector('#auto_theater_option');
 
-chrome.storage.local.get("autoTheater").then(({ autoTheater }) => {
-  autoTheaterOpEle.checked = autoTheater;
+chrome.storage.local.get('isAutoTheater').then(({ isAutoTheater }) => {
+  autoTheaterOpEle.checked = isAutoTheater;
 });
 
 const onChangeAutoTheater = (val) => {
-  chrome.storage.local.set({ autoTheater: val.target.checked });
+  chrome.storage.local.set({ isAutoTheater: val.target.checked });
 };
 
-autoTheaterOpEle.addEventListener("change", onChangeAutoTheater);
+autoTheaterOpEle.addEventListener('change', onChangeAutoTheater);
